@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>블랙리츠 총판 사업안내서</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+ 
+:root {
+  --bg: #fbfbfd;
+  --card: #ffffff;
+  --text: #1d1d1f;
+  --text-secondary: #6e6e73;
+  --text-tertiary: #86868b;
+  --accent: #0071e3;
+  --accent-hover: #0077ed;
+  --border: #d2d2d7;
+  --border-light: #f5f5f7;
+  --success: #30d158;
+  --shadow: 0 4px 24px rgba(0,0,0,0.06);
+  --shadow-lg: 0 20px 60px rgba(0,0,0,0.1);
+}
+ 
+html, body {
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+ 
+/* Top nav */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 48px;
+  background: rgba(251,251,253,0.8);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  z-index: 100;
+  font-size: 14px;
+  font-weight: 500;
+}
+.nav-brand { letter-spacing: -0.01em; }
+.nav-progress { color: var(--text-tertiary); font-variant-numeric: tabular-nums; }
+ 
+/* Slides container */
+.slides {
+  padding-top: 48px;
+  padding-bottom: 120px;
+}
+ 
+.slide {
+  min-height: calc(100vh - 48px);
+  padding: 80px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  scroll-snap-align: start;
+}
+ 
+.slide-inner {
+  width: 100%;
+  max-width: 980px;
+  margin: 0 auto;
+}
+ 
+/* Hero / cover */
+.hero {
+  text-align: center;
+}
+.hero .eyebrow {
+  font-size: 17px;
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: 16px;
+  letter-spacing: -0.01em;
+}
+.hero h1 {
+  font-size: clamp(48px, 8vw, 96px);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  margin-bottom: 24px;
+  background: linear-gradient(180deg, #1d1d1f 0%, #494951 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero .sub {
+  font-size: clamp(20px, 2.5vw, 28px);
+  color: var(--text-secondary);
+  font-weight: 400;
+  max-width: 720px;
+  margin: 0 auto 48px;
+  letter-spacing: -0.01em;
+  line-height: 1.4;
+}
+.hero .pills {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.pill {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 980px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+ 
+/* Section title */
+.section-eyebrow {
+  font-size: 14px;
+  color: var(--accent);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 16px;
+}
+.section-title {
+  font-size: clamp(36px, 5vw, 56px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin-bottom: 24px;
+}
+.section-sub {
+  font-size: clamp(18px, 2vw, 21px);
+  color: var(--text-secondary);
+  font-weight: 400;
+  line-height: 1.5;
+  margin-bottom: 56px;
+  max-width: 720px;
+}
+ 
+/* Flow steps */
+.flow {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+}
+.flow-step {
+  background: var(--card);
+  border-radius: 20px;
+  padding: 28px 24px;
+  box-shadow: var(--shadow);
+  position: relative;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.flow-step:hover { transform: translateY(-4px); }
+.flow-num {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent);
+  margin-bottom: 12px;
+  letter-spacing: 0.02em;
+}
+.flow-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  letter-spacing: -0.01em;
+}
+.flow-desc {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+ 
+/* Fee cards */
+.fee-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+.fee-card {
+  background: var(--card);
+  border-radius: 24px;
+  padding: 36px 32px;
+  box-shadow: var(--shadow);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.fee-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+.fee-card.featured {
+  background: linear-gradient(135deg, #1d1d1f 0%, #2c2c2e 100%);
+  color: white;
+}
+.fee-card.featured .fee-label,
+.fee-card.featured .fee-note { color: rgba(255,255,255,0.7); }
+.fee-tag {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 980px;
+  background: var(--border-light);
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+  letter-spacing: 0.02em;
+}
+.fee-card.featured .fee-tag {
+  background: rgba(255,255,255,0.15);
+  color: white;
+}
+.fee-type {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 4px;
+  letter-spacing: -0.02em;
+}
+.fee-cycle {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-bottom: 28px;
+}
+.fee-card.featured .fee-cycle { color: rgba(255,255,255,0.6); }
+.fee-rate {
+  font-size: 56px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  margin-bottom: 4px;
+  font-variant-numeric: tabular-nums;
+}
+.fee-rate-label {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-bottom: 24px;
+}
+.fee-card.featured .fee-rate-label { color: rgba(255,255,255,0.6); }
+.fee-rows { border-top: 1px solid var(--border-light); padding-top: 20px; }
+.fee-card.featured .fee-rows { border-top-color: rgba(255,255,255,0.1); }
+.fee-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 8px 0;
+  font-size: 14px;
+}
+.fee-label { color: var(--text-secondary); }
+.fee-value { font-weight: 600; font-variant-numeric: tabular-nums; }
+.fee-note {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border-light);
+  font-size: 13px;
+  color: var(--text-tertiary);
+  line-height: 1.5;
+}
+.fee-card.featured .fee-note { border-top-color: rgba(255,255,255,0.1); }
+ 
+/* Simulator */
+.sim-wrap {
+  background: var(--card);
+  border-radius: 28px;
+  padding: 40px;
+  box-shadow: var(--shadow);
+}
+.sim-controls {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+.sim-field label {
+  display: block;
+  font-size: 13px;
+  color: var(--text-secondary);
+  font-weight: 500;
+  margin-bottom: 10px;
+  letter-spacing: 0.02em;
+}
+.sim-field input, .sim-field select {
+  width: 100%;
+  padding: 14px 16px;
+  font-size: 16px;
+  font-family: inherit;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--bg);
+  color: var(--text);
+  transition: border-color 0.2s, box-shadow 0.2s;
+  font-variant-numeric: tabular-nums;
+}
+.sim-field input:focus, .sim-field select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px rgba(0,113,227,0.1);
+}
+.sim-result {
+  background: linear-gradient(135deg, #f5f5f7 0%, #ffffff 100%);
+  border-radius: 20px;
+  padding: 32px;
+  text-align: center;
+}
+.sim-result-label {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+.sim-result-value {
+  font-size: clamp(48px, 7vw, 72px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  margin-bottom: 8px;
+  background: linear-gradient(180deg, #1d1d1f 0%, #494951 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.sim-result-annual {
+  font-size: 16px;
+  color: var(--text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+.sim-presets {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  justify-content: center;
+}
+.preset-btn {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 980px;
+  padding: 8px 16px;
+  font-size: 13px;
+  font-family: inherit;
+  font-weight: 500;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.preset-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+ 
+/* Examples table */
+.examples {
+  background: var(--card);
+  border-radius: 24px;
+  padding: 8px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+.examples-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1.5fr 1fr 1.3fr;
+  align-items: center;
+  padding: 18px 24px;
+  border-bottom: 1px solid var(--border-light);
+  font-size: 15px;
+}
+.examples-row:last-child { border-bottom: none; }
+.examples-row.head {
+  font-size: 12px;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 600;
+  padding: 14px 24px;
+}
+.examples-row.total {
+  background: var(--border-light);
+  font-weight: 600;
+  border-radius: 16px;
+  margin-top: 8px;
+}
+.tag-d1, .tag-recalc, .tag-d0 {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 980px;
+  letter-spacing: 0.03em;
+}
+.tag-d1 { background: #e8f4ff; color: #0071e3; }
+.tag-recalc { background: #fff4e6; color: #c25e00; }
+.tag-d0 { background: #e8faef; color: #0e8a3a; }
+.num { font-variant-numeric: tabular-nums; text-align: right; }
+ 
+/* Final CTA */
+.cta-card {
+  background: linear-gradient(135deg, #1d1d1f 0%, #2c2c2e 100%);
+  border-radius: 32px;
+  padding: 80px 48px;
+  text-align: center;
+  color: white;
+}
+.cta-card h2 {
+  font-size: clamp(36px, 5vw, 56px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin-bottom: 16px;
+}
+.cta-card p {
+  font-size: 19px;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 40px;
+  max-width: 560px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.5;
+}
+.cta-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  max-width: 640px;
+  margin: 0 auto 40px;
+  padding-top: 40px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+.cta-stat-num {
+  font-size: clamp(32px, 4vw, 44px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  margin-bottom: 4px;
+}
+.cta-stat-label {
+  font-size: 13px;
+  color: rgba(255,255,255,0.6);
+}
+ 
+/* Notes */
+.notes {
+  margin-top: 48px;
+  padding-top: 32px;
+  border-top: 1px solid var(--border-light);
+  font-size: 13px;
+  color: var(--text-tertiary);
+  line-height: 1.7;
+}
+.notes p { margin-bottom: 6px; }
+ 
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 48px 24px;
+  color: var(--text-tertiary);
+  font-size: 12px;
+  border-top: 1px solid var(--border-light);
+}
+ 
+/* Reveal animation */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.in {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal.delay-1 { transition-delay: 0.1s; }
+.reveal.delay-2 { transition-delay: 0.2s; }
+.reveal.delay-3 { transition-delay: 0.3s; }
+.reveal.delay-4 { transition-delay: 0.4s; }
+.reveal.delay-5 { transition-delay: 0.5s; }
+ 
+/* Responsive */
+@media (max-width: 720px) {
+  .slide { padding: 60px 20px; }
+  .sim-controls { grid-template-columns: 1fr; gap: 16px; }
+  .sim-wrap { padding: 28px 20px; }
+  .examples-row {
+    grid-template-columns: 1.5fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 4px 12px;
+  }
+  .examples-row.head { display: none; }
+  .examples-row > :nth-child(3),
+  .examples-row > :nth-child(4) { font-size: 12px; color: var(--text-tertiary); }
+  .cta-stats { grid-template-columns: 1fr; gap: 20px; }
+  .cta-card { padding: 56px 24px; }
+}
+</style>
+</head>
+<body>
+ 
+<nav class="nav">
+  <div class="nav-brand">블랙리츠 PG</div>
+  <div class="nav-progress" id="progress">01 / 06</div>
+</nav>
+ 
+<div class="slides">
+ 
+  <!-- 01 Hero -->
+  <section class="slide" id="s1">
+    <div class="slide-inner hero">
+      <div class="eyebrow reveal">총판 사업 안내서</div>
+      <h1 class="reveal delay-1">유치한 만큼<br>매월 받습니다.</h1>
+      <p class="sub reveal delay-2">총판은 본인이 유치한 가맹점의 카드 결제 매출에 대해<br>매월 정해진 수수료율로 안정적인 수익을 받습니다.</p>
+      <div class="pills reveal delay-3">
+        <span class="pill">매월 자동 정산</span>
+        <span class="pill">D0 · D1 · 재정산</span>
+        <span class="pill">부가세 별도</span>
+      </div>
+    </div>
+  </section>
+ 
+  <!-- 02 Flow -->
+  <section class="slide" id="s2">
+    <div class="slide-inner">
+      <div class="section-eyebrow reveal">정산 흐름</div>
+      <h2 class="section-title reveal delay-1">결제부터 입금까지,<br>5단계로 끝.</h2>
+      <p class="section-sub reveal delay-2">고객이 카드를 긁는 순간부터, 매월 본인 계좌로 입금되는 순간까지의 흐름입니다.</p>
+      <div class="flow">
+        <div class="flow-step reveal delay-1">
+          <div class="flow-num">STEP 01</div>
+          <div class="flow-title">고객 카드결제</div>
+          <div class="flow-desc">가맹점에서 카드결제가 발생합니다.</div>
+        </div>
+        <div class="flow-step reveal delay-2">
+          <div class="flow-num">STEP 02</div>
+          <div class="flow-title">PG · 카드사 정산</div>
+          <div class="flow-desc">PG사·카드사가 가맹점에게 결제대금을 정산합니다 (D0/D1/D3 등).</div>
+        </div>
+        <div class="flow-step reveal delay-3">
+          <div class="flow-num">STEP 03</div>
+          <div class="flow-title">수수료 매출 집계</div>
+          <div class="flow-desc">PG가 매월 수수료 매출을 집계합니다.</div>
+        </div>
+        <div class="flow-step reveal delay-4">
+          <div class="flow-num">STEP 04</div>
+          <div class="flow-title">조직별 분배</div>
+          <div class="flow-desc">정산표에 따라 총판·대리점·영업점에 수수료가 자동 분배됩니다.</div>
+        </div>
+        <div class="flow-step reveal delay-5">
+          <div class="flow-num">STEP 05</div>
+          <div class="flow-title">월말 지급</div>
+          <div class="flow-desc">공급가액 기준 통신비/유심비 차감 후 본인 계좌로 지급됩니다.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+ 
+  <!-- 03 Fee proposal -->
+  <section class="slide" id="s3">
+    <div class="slide-inner">
+      <div class="section-eyebrow reveal">3가지 정산 방식</div>
+      <h2 class="section-title reveal delay-1">정산 주기에 따라<br>수수료가 달라집니다.</h2>
+      <p class="section-sub reveal delay-2">가맹점 부담 수수료 중 일부를 총판이 공유합니다. 신규 등록 기준은 D1(익일정산) 0.55%입니다.</p>
+ 
+      <div class="fee-grid">
+        <!-- D1 -->
+        <div class="fee-card featured reveal delay-1">
+          <span class="fee-tag">권장 · 신규 기본</span>
+          <div class="fee-type">D1</div>
+          <div class="fee-cycle">익일 정산 · D+1</div>
+          <div class="fee-rate">0.55<span style="font-size:32px;">%</span></div>
+          <div class="fee-rate-label">총판 수수료 (제안)</div>
+          <div class="fee-rows">
+            <div class="fee-row"><span class="fee-label">점주 카드수수료</span><span class="fee-value">4.4%</span></div>
+            <div class="fee-row"><span class="fee-label">월 1천만원 매출</span><span class="fee-value">55,000원</span></div>
+            <div class="fee-row"><span class="fee-label">월 5천만원 매출</span><span class="fee-value">275,000원</span></div>
+            <div class="fee-row"><span class="fee-label">월 1억 매출</span><span class="fee-value">550,000원</span></div>
+          </div>
+          <div class="fee-note">3.95% 이상 받으면 됩니다.</div>
+        </div>
+ 
+        <!-- 재정산 -->
+        <div class="fee-card reveal delay-2">
+          <span class="fee-tag">고마진</span>
+          <div class="fee-type">재정산</div>
+          <div class="fee-cycle">D+1</div>
+          <div class="fee-rate">3.0<span style="font-size:32px;">%</span></div>
+          <div class="fee-rate-label">총판 수수료 (제안)</div>
+          <div class="fee-rows">
+            <div class="fee-row"><span class="fee-label">점주 카드수수료</span><span class="fee-value">6.0%</span></div>
+            <div class="fee-row"><span class="fee-label">월 1천만원 매출</span><span class="fee-value">300,000원</span></div>
+            <div class="fee-row"><span class="fee-label">월 5천만원 매출</span><span class="fee-value">1,500,000원</span></div>
+            <div class="fee-row"><span class="fee-label">월 1억 매출</span><span class="fee-value">3,000,000원</span></div>
+          </div>
+          <div class="fee-note">6% 이상 받으면 됩니다. 마진율 3%대로 업주 입장에서 세금 혜택이 가장 큽니다.</div>
+        </div>
+ 
+        <!-- D0 -->
+        <div class="fee-card reveal delay-3">
+          <span class="fee-tag">즉시 정산</span>
+          <div class="fee-type">D0</div>
+          <div class="fee-cycle">당일 즉시</div>
+          <div class="fee-rate">4.0<span style="font-size:32px;">%</span></div>
+          <div class="fee-rate-label">총판 수수료 (제안)</div>
+          <div class="fee-rows">
+            <div class="fee-row"><span class="fee-label">점주 카드수수료</span><span class="fee-value">7.0%</span></div>
+            <div class="fee-row"><span class="fee-label">월 1천만원 매출</span><span class="fee-value">400,000원</span></div>
+            <div class="fee-row"><span class="fee-label">월 5천만원 매출</span><span class="fee-value">2,000,000원</span></div>
+            <div class="fee-row"><span class="fee-label">월 1억 매출</span><span class="fee-value">4,000,000원</span></div>
+          </div>
+          <div class="fee-note">7% 이상 받으면 됩니다. 즉시정산 총판은 마진이 가장 큽니다.</div>
+        </div>
+      </div>
+ 
+      <div class="notes reveal">
+        <p>※ 본 제안표는 신규 총판 협상용 권장값입니다. 최종 수수료율은 본사 협의 후 확정됩니다.</p>
+        <p>※ 위 수수료는 부가세 별도 (공급가액 기준 지급).</p>
+      </div>
+    </div>
+  </section>
+ 
+  <!-- 04 Simulator -->
+  <section class="slide" id="s4">
+    <div class="slide-inner">
+      <div class="section-eyebrow reveal">수익 시뮬레이터</div>
+      <h2 class="section-title reveal delay-1">매출과 수수료율을<br>입력해 보세요.</h2>
+      <p class="section-sub reveal delay-2">가맹점 한 곳의 월 매출과 수수료율을 넣으면 월/연간 예상 수익이 즉시 계산됩니다.</p>
+ 
+      <div class="sim-wrap reveal delay-1">
+        <div class="sim-controls">
+          <div class="sim-field">
+            <label for="sim-rev">월 매출 (원)</label>
+            <input type="number" id="sim-rev" value="50000000" step="1000000">
+          </div>
+          <div class="sim-field">
+            <label for="sim-rate">총판 수수료율 (%)</label>
+            <input type="number" id="sim-rate" value="0.55" step="0.01">
+          </div>
+        </div>
+        <div class="sim-result">
+          <div class="sim-result-label">월 예상 수익</div>
+          <div class="sim-result-value" id="sim-monthly">275,000원</div>
+          <div class="sim-result-annual">연 환산 <span id="sim-annual">3,300,000</span>원 (월수익 × 12)</div>
+          <div class="sim-presets">
+            <button class="preset-btn" data-rev="10000000" data-rate="0.55">월 1천만 · 0.55%</button>
+            <button class="preset-btn" data-rev="50000000" data-rate="0.55">월 5천만 · 0.55%</button>
+            <button class="preset-btn" data-rev="100000000" data-rate="0.55">월 1억 · 0.55%</button>
+            <button class="preset-btn" data-rev="50000000" data-rate="3">월 5천만 · 재정산 3%</button>
+            <button class="preset-btn" data-rev="50000000" data-rate="4">월 5천만 · D0 4%</button>
+          </div>
+        </div>
+      </div>
+ 
+      <div class="notes reveal delay-2">
+        <p>※ 위 금액은 부가세 별도 공급가액 기준입니다.</p>
+        <p>※ 통신비/유심비 차감 전 금액이며 실제 입금액과 차이가 있을 수 있습니다.</p>
+      </div>
+    </div>
+  </section>
+ 
+  <!-- 05 Examples -->
+  <section class="slide" id="s5">
+    <div class="slide-inner">
+      <div class="section-eyebrow reveal">실제 시뮬레이션</div>
+      <h2 class="section-title reveal delay-1">10개 가맹점, 매출 10억<br>월 수익 844만원.</h2>
+      <p class="section-sub reveal delay-2">아래는 매출 합계 10억원 가맹점 구성을 가정한 시뮬레이션입니다. 연 환산 1억원이 가능한 모델입니다.</p>
+ 
+      <div class="examples reveal delay-1">
+        <div class="examples-row head">
+          <div>가맹점</div>
+          <div>타입</div>
+          <div class="num">월 매출</div>
+          <div class="num">수수료율</div>
+          <div class="num">월 수익</div>
+        </div>
+        <div class="examples-row">
+          <div>카페A</div>
+          <div><span class="tag-d1">D1</span></div>
+          <div class="num">50,000,000</div>
+          <div class="num">0.55%</div>
+          <div class="num">275,000</div>
+        </div>
+        <div class="examples-row">
+          <div>음식점B</div>
+          <div><span class="tag-d1">D1</span></div>
+          <div class="num">80,000,000</div>
+          <div class="num">0.55%</div>
+          <div class="num">440,000</div>
+        </div>
+        <div class="examples-row">
+          <div>온라인판매점</div>
+          <div><span class="tag-d1">D1</span></div>
+          <div class="num">100,000,000</div>
+          <div class="num">0.55%</div>
+          <div class="num">550,000</div>
+        </div>
+        <div class="examples-row">
+          <div>사업장E</div>
+          <div><span class="tag-recalc">재정산</span></div>
+          <div class="num">40,000,000</div>
+          <div class="num">3.00%</div>
+          <div class="num">1,200,000</div>
+        </div>
+        <div class="examples-row">
+          <div>로컬마트 상암점</div>
+          <div><span class="tag-d1">D1</span></div>
+          <div class="num">120,000,000</div>
+          <div class="num">0.55%</div>
+          <div class="num">660,000</div>
+        </div>
+        <div class="examples-row">
+          <div>프리미엄필라테스</div>
+          <div><span class="tag-d1">D1</span></div>
+          <div class="num">150,000,000</div>
+          <div class="num">0.55%</div>
+          <div class="num">825,000</div>
+        </div>
+        <div class="examples-row">
+          <div>미래치과의원</div>
+          <div><span class="tag-d1">D1</span></div>
+          <div class="num">200,000,000</div>
+          <div class="num">0.55%</div>
+          <div class="num">1,100,000</div>
+        </div>
+        <div class="examples-row">
+          <div>스마트스터디학원</div>
+          <div><span class="tag-d1">D1</span></div>
+          <div class="num">180,000,000</div>
+          <div class="num">0.55%</div>
+          <div class="num">990,000</div>
+        </div>
+        <div class="examples-row">
+          <div>온누리약국 강남점</div>
+          <div><span class="tag-recalc">재정산</span></div>
+          <div class="num">80,000,000</div>
+          <div class="num">3.00%</div>
+          <div class="num">2,400,000</div>
+        </div>
+        <div class="examples-row total">
+          <div>월 합계</div>
+          <div></div>
+          <div class="num">1,000,000,000</div>
+          <div></div>
+          <div class="num">8,440,000</div>
+        </div>
+      </div>
+    </div>
+  </section>
+ 
+  <!-- 06 CTA -->
+  <section class="slide" id="s6">
+    <div class="slide-inner">
+      <div class="cta-card reveal">
+        <h2>지금 바로,<br>총판으로 시작하세요.</h2>
+        <p>가맹점 유치부터 매월 자동 정산까지. 본사가 시스템으로 받쳐드립니다.</p>
+        <div class="cta-stats">
+          <div>
+            <div class="cta-stat-num">3가지</div>
+            <div class="cta-stat-label">정산 방식</div>
+          </div>
+          <div>
+            <div class="cta-stat-num">최대 4%</div>
+            <div class="cta-stat-label">총판 수수료</div>
+          </div>
+          <div>
+            <div class="cta-stat-num">매월</div>
+            <div class="cta-stat-label">자동 지급</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+ 
+</div>
+ 
+<footer class="footer">
+  © 블랙리츠 PG · 총판 사업안내서 v1
+</footer>
+ 
+<script>
+// Simulator
+const revInput = document.getElementById('sim-rev');
+const rateInput = document.getElementById('sim-rate');
+const monthlyOut = document.getElementById('sim-monthly');
+const annualOut = document.getElementById('sim-annual');
+const fmt = n => Math.round(n).toLocaleString('ko-KR');
+ 
+function calc() {
+  const rev = parseFloat(revInput.value) || 0;
+  const rate = (parseFloat(rateInput.value) || 0) / 100;
+  const monthly = rev * rate;
+  monthlyOut.textContent = fmt(monthly) + '원';
+  annualOut.textContent = fmt(monthly * 12);
+}
+revInput.addEventListener('input', calc);
+rateInput.addEventListener('input', calc);
+document.querySelectorAll('.preset-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    revInput.value = btn.dataset.rev;
+    rateInput.value = btn.dataset.rate;
+    calc();
+  });
+});
+calc();
+ 
+// Reveal on scroll
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('in');
+      io.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.15 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+ 
+// Progress
+const slides = document.querySelectorAll('.slide');
+const progress = document.getElementById('progress');
+const total = String(slides.length).padStart(2, '0');
+const navIo = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting && e.intersectionRatio > 0.5) {
+      const idx = Array.from(slides).indexOf(e.target) + 1;
+      progress.textContent = String(idx).padStart(2, '0') + ' / ' + total;
+    }
+  });
+}, { threshold: [0.5] });
+slides.forEach(s => navIo.observe(s));
+</script>
+</body>
+</html>
