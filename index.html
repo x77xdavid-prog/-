@@ -333,6 +333,13 @@ html, body {
   color: var(--text-secondary);
   font-variant-numeric: tabular-nums;
 }
+.sim-result-basis {
+  font-size: 14px;
+  color: var(--text-tertiary);
+  font-variant-numeric: tabular-nums;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
 .sim-presets {
   display: flex;
   gap: 8px;
@@ -633,7 +640,7 @@ html, body {
         <div class="sim-controls">
           <div class="sim-field">
             <label for="sim-rev">월 매출 (원)</label>
-            <input type="text" inputmode="numeric" id="sim-rev" value="50,000,000">
+            <input type="text" inputmode="numeric" id="sim-rev" value="100,000,000">
           </div>
           <div class="sim-field">
             <label for="sim-rate">총판 수수료율 (%)</label>
@@ -642,8 +649,9 @@ html, body {
         </div>
         <div class="sim-result">
           <div class="sim-result-label">월 예상 수익</div>
-          <div class="sim-result-value" id="sim-monthly">250,000원</div>
-          <div class="sim-result-annual">연 환산 <span id="sim-annual">3,000,000</span>원 (월수익 × 12)</div>
+          <div class="sim-result-value" id="sim-monthly">500,000원</div>
+          <div class="sim-result-basis" id="sim-basis">(월 매출 1억원 기준)</div>
+          <div class="sim-result-annual">연 환산 <span id="sim-annual">6,000,000</span>원 (월수익 × 12)</div>
           <div class="sim-presets">
             <button class="preset-btn" data-rev="10000000" data-rate="0.5">월 1천만 · 0.5%</button>
             <button class="preset-btn" data-rev="50000000" data-rate="0.5">월 5천만 · 0.5%</button>
@@ -786,7 +794,21 @@ const revInput = document.getElementById('sim-rev');
 const rateInput = document.getElementById('sim-rate');
 const monthlyOut = document.getElementById('sim-monthly');
 const annualOut = document.getElementById('sim-annual');
+const basisOut = document.getElementById('sim-basis');
 const fmt = n => Math.round(n).toLocaleString('ko-KR');
+
+// 매출액을 한국식 단위로 표현 (1,000,000,000 → "10억", 50,000,000 → "5,000만")
+function koreanUnit(n) {
+  if (!n || n <= 0) return '0원';
+  const eok = Math.floor(n / 100000000);
+  const man = Math.floor((n % 100000000) / 10000);
+  const won = n % 10000;
+  let result = '';
+  if (eok > 0) result += eok.toLocaleString('ko-KR') + '억';
+  if (man > 0) result += (result ? ' ' : '') + man.toLocaleString('ko-KR') + '만';
+  if (won > 0 && eok === 0 && man === 0) result += won.toLocaleString('ko-KR');
+  return (result || '0') + '원';
+}
 
 function calc() {
   const rev = parseFloat(revInput.value.replace(/,/g, '')) || 0;
@@ -794,6 +816,7 @@ function calc() {
   const monthly = rev * rate;
   monthlyOut.textContent = fmt(monthly) + '원';
   annualOut.textContent = fmt(monthly * 12);
+  basisOut.textContent = '(월 매출 ' + koreanUnit(rev) + ' 기준)';
 }
 
 // 매출 input에 콤마 자동 포맷팅
