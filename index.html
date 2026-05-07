@@ -1865,12 +1865,12 @@ const formStatus = document.getElementById('form-status');
 // =====================================================
 // 텔레그램 알림 설정 (본인이 이 두 줄을 본인 값으로 채우세요)
 // =====================================================
-const TELEGRAM_BOT_TOKEN = '8591430439:AAEAjuF4YLM32IIDUWIrYvM0XnXKWDiHZGw';
+const TELEGRAM_BOT_TOKEN = '8591430439:AAHU0AbgmA3bnC2X4pwl6N0LJcUSUzCwzZg';
 const TELEGRAM_CHAT_ID   = '5019367573';
 // =====================================================
 
 async function sendTelegramAlert(formData) {
-  if (!TELEGRAM_BOT_TOKEN || TELEGRAM_BOT_TOKEN === '8591430439:AAEAjuF4YLM32IIDUWIrYvM0XnXKWDiHZGw') return;
+  if (!TELEGRAM_BOT_TOKEN || TELEGRAM_BOT_TOKEN === '8591430439:AAHU0AbgmA3bnC2X4pwl6N0LJcUSUzCwzZg') return;
 
   const get = k => (formData.get(k) || '').toString().trim();
   const fileInfo = (k) => {
