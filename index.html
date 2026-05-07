@@ -463,6 +463,415 @@ html, body {
 }
 .notes p { margin-bottom: 6px; }
 
+/* CTA button */
+.cta-button {
+  display: inline-block;
+  margin-top: 40px;
+  padding: 16px 36px;
+  background: white;
+  color: #1d1d1f;
+  border-radius: 980px;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  letter-spacing: -0.01em;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.cta-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(255,255,255,0.2);
+}
+
+/* Booking section */
+.booking-wrap {
+  background: var(--card);
+  border-radius: 28px;
+  padding: 48px;
+  box-shadow: var(--shadow);
+}
+.booking-section + .booking-section {
+  margin-top: 48px;
+  padding-top: 48px;
+  border-top: 1px solid var(--border-light);
+}
+.booking-step {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+.step-num {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--text);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+.step-title {
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.step-title .optional {
+  font-size: 13px;
+  color: var(--text-tertiary);
+  font-weight: 500;
+  margin-left: 6px;
+}
+
+/* Calendar */
+.calendar-wrap {
+  background: var(--bg);
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 20px;
+}
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.cal-nav {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: white;
+  color: var(--text);
+  font-size: 22px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  font-family: inherit;
+  line-height: 1;
+}
+.cal-nav:hover { background: var(--text); color: white; }
+.cal-nav:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  background: white;
+  color: var(--text);
+}
+.cal-month {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.calendar-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  margin-bottom: 8px;
+}
+.calendar-weekdays span {
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-tertiary);
+  font-weight: 600;
+  padding: 8px 0;
+}
+.calendar-weekdays span:first-child { color: #ff3b30; }
+.calendar-weekdays span:last-child { color: #0071e3; }
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+.cal-day {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 10px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-variant-numeric: tabular-nums;
+  color: var(--text);
+  transition: all 0.15s;
+}
+.cal-day:hover:not(:disabled):not(.empty) {
+  background: white;
+}
+.cal-day.empty { cursor: default; }
+.cal-day:disabled {
+  color: #d2d2d7;
+  cursor: not-allowed;
+}
+.cal-day.today {
+  font-weight: 700;
+  color: var(--accent);
+}
+.cal-day.selected {
+  background: var(--text) !important;
+  color: white !important;
+}
+.cal-day.weekend-sun:not(:disabled) { color: #ff3b30; }
+.cal-day.weekend-sat:not(:disabled) { color: #0071e3; }
+
+/* Time slots */
+.time-slots {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: 8px;
+  min-height: 60px;
+}
+.time-empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 24px;
+  color: var(--text-tertiary);
+  font-size: 14px;
+}
+.time-slot {
+  padding: 12px 8px;
+  border: 1px solid var(--border);
+  background: white;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.15s;
+  font-variant-numeric: tabular-nums;
+}
+.time-slot:hover:not(:disabled) {
+  border-color: var(--text);
+}
+.time-slot:disabled {
+  background: var(--border-light);
+  color: var(--text-tertiary);
+  text-decoration: line-through;
+  cursor: not-allowed;
+  border-color: var(--border-light);
+}
+.time-slot.selected {
+  background: var(--text);
+  color: white;
+  border-color: var(--text);
+}
+
+.selected-summary {
+  margin-top: 20px;
+  padding: 16px 20px;
+  background: linear-gradient(135deg, #f0f7ff 0%, #ffffff 100%);
+  border: 1px solid #d1e3ff;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.sel-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.sel-value {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+
+/* Form */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.form-field { display: flex; flex-direction: column; }
+.form-field.full { grid-column: 1 / -1; }
+.form-field label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+  letter-spacing: 0.01em;
+}
+.form-field .required {
+  color: #ff3b30;
+  margin-left: 2px;
+}
+.form-field input,
+.form-field select,
+.form-field textarea {
+  width: 100%;
+  padding: 13px 16px;
+  font-size: 15px;
+  font-family: inherit;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--bg);
+  color: var(--text);
+  transition: all 0.2s;
+  font-variant-numeric: tabular-nums;
+  resize: vertical;
+}
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+  outline: none;
+  border-color: var(--text);
+  box-shadow: 0 0 0 4px rgba(0,0,0,0.04);
+  background: white;
+}
+.form-field textarea {
+  font-variant-numeric: normal;
+  font-family: inherit;
+}
+.form-hint {
+  margin-top: 8px;
+  font-size: 13px;
+  color: var(--text-tertiary);
+  font-variant-numeric: tabular-nums;
+}
+.form-hint.active {
+  color: var(--accent);
+  font-weight: 500;
+}
+
+/* Upload */
+.upload-desc {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+.upload-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+}
+.upload-box {
+  background: var(--bg);
+  border: 1.5px dashed var(--border);
+  border-radius: 14px;
+  padding: 24px 16px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.upload-box:hover {
+  border-color: var(--text);
+  background: white;
+}
+.upload-box.has-file {
+  background: #f0fdf4;
+  border-color: #30d158;
+  border-style: solid;
+}
+.upload-box input[type="file"] {
+  position: absolute;
+  width: 1px; height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+.upload-icon {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+  color: var(--text-secondary);
+}
+.upload-box.has-file .upload-icon { color: #30d158; }
+.upload-title {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 4px;
+  letter-spacing: -0.01em;
+}
+.upload-hint {
+  font-size: 12px;
+  color: var(--text-tertiary);
+  word-break: break-all;
+  line-height: 1.4;
+}
+.upload-box.has-file .upload-hint { color: #16803c; font-weight: 500; }
+
+/* Consent */
+.consent { margin-top: 32px; }
+.consent-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  cursor: pointer;
+}
+.consent-label input[type="checkbox"] {
+  margin-top: 2px;
+  width: 16px;
+  height: 16px;
+  accent-color: var(--text);
+  flex-shrink: 0;
+}
+
+/* Submit */
+.submit-btn {
+  margin-top: 28px;
+  width: 100%;
+  padding: 18px;
+  background: var(--text);
+  color: white;
+  border: none;
+  border-radius: 14px;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  letter-spacing: -0.01em;
+  transition: all 0.2s;
+}
+.submit-btn:hover {
+  background: #000;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+}
+.submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+.form-status {
+  margin-top: 16px;
+  padding: 14px 18px;
+  border-radius: 12px;
+  font-size: 14px;
+  text-align: center;
+  display: none;
+}
+.form-status.success {
+  display: block;
+  background: #f0fdf4;
+  color: #16803c;
+  border: 1px solid #86efac;
+}
+.form-status.error {
+  display: block;
+  background: #fef2f2;
+  color: #b91c1c;
+  border: 1px solid #fca5a5;
+}
+
+@media (max-width: 720px) {
+  .booking-wrap { padding: 28px 20px; }
+  .form-grid { grid-template-columns: 1fr; gap: 16px; }
+  .upload-grid { grid-template-columns: 1fr; }
+}
+
 /* Footer */
 .footer {
   background: #ffffff;
@@ -669,7 +1078,7 @@ html, body {
 
 <nav class="nav">
   <div class="nav-brand">블랙리츠 PG</div>
-  <div class="nav-progress" id="progress">01 / 06</div>
+  <div class="nav-progress" id="progress">01 / 07</div>
 </nav>
 
 <div class="slides">
@@ -937,6 +1346,151 @@ html, body {
             <div class="cta-stat-label">자동 지급</div>
           </div>
         </div>
+        <a href="#s7" class="cta-button">미팅 예약하기 →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 07 Booking -->
+  <section class="slide" id="s7">
+    <div class="slide-inner">
+      <div class="section-eyebrow reveal">미팅 예약</div>
+      <h2 class="section-title reveal delay-1">원하시는 시간에<br>예약해 주세요.</h2>
+      <p class="section-sub reveal delay-2">날짜와 시간을 선택하고 정보를 입력하시면, 담당자가 확인 후 연락드립니다.</p>
+
+      <div class="booking-wrap reveal delay-1">
+        <!-- Step 1: 날짜 시간 선택 -->
+        <div class="booking-section">
+          <div class="booking-step">
+            <div class="step-num">01</div>
+            <div class="step-title">날짜 · 시간 선택</div>
+          </div>
+
+          <div class="calendar-wrap">
+            <div class="calendar-header">
+              <button type="button" class="cal-nav" id="cal-prev" aria-label="이전 달">‹</button>
+              <div class="cal-month" id="cal-month">2026년 5월</div>
+              <button type="button" class="cal-nav" id="cal-next" aria-label="다음 달">›</button>
+            </div>
+            <div class="calendar-weekdays">
+              <span>일</span><span>월</span><span>화</span><span>수</span><span>목</span><span>금</span><span>토</span>
+            </div>
+            <div class="calendar-grid" id="cal-grid"></div>
+          </div>
+
+          <div class="time-slots" id="time-slots">
+            <div class="time-empty">먼저 날짜를 선택해 주세요</div>
+          </div>
+
+          <div class="selected-summary" id="selected-summary" style="display:none;">
+            <span class="sel-label">선택한 일정</span>
+            <span class="sel-value" id="sel-value"></span>
+          </div>
+        </div>
+
+        <!-- Step 2: 정보 입력 -->
+        <div class="booking-section">
+          <div class="booking-step">
+            <div class="step-num">02</div>
+            <div class="step-title">신청자 정보</div>
+          </div>
+
+          <form id="booking-form" action="https://formspree.io/f/mrejaglg" method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="예약일시" id="hidden-datetime">
+            <input type="hidden" name="_subject" value="[블랙리츠] 신규 총판 미팅 예약 신청">
+
+            <div class="form-grid">
+              <div class="form-field">
+                <label>이름 <span class="required">*</span></label>
+                <input type="text" name="이름" required placeholder="홍길동">
+              </div>
+              <div class="form-field">
+                <label>전화번호 <span class="required">*</span></label>
+                <input type="tel" name="전화번호" required placeholder="010-1234-5678">
+              </div>
+              <div class="form-field">
+                <label>이메일</label>
+                <input type="email" name="이메일" placeholder="example@email.com">
+              </div>
+              <div class="form-field">
+                <label>사업자등록번호</label>
+                <input type="text" name="사업자등록번호" placeholder="000-00-00000">
+              </div>
+              <div class="form-field">
+                <label>상호 / 사업장명</label>
+                <input type="text" name="상호" placeholder="(주)블랙리츠">
+              </div>
+              <div class="form-field">
+                <label>희망 정산 방식</label>
+                <select name="희망정산방식">
+                  <option value="">선택해 주세요</option>
+                  <option value="D1 (익일정산)">D1 · 익일정산</option>
+                  <option value="재정산">재정산</option>
+                  <option value="D0 (즉시정산)">D0 · 즉시정산</option>
+                  <option value="상담 후 결정">상담 후 결정</option>
+                </select>
+              </div>
+              <div class="form-field full">
+                <label>월 목표 매출 (원)</label>
+                <input type="text" inputmode="numeric" name="월목표매출" id="goal-rev" placeholder="예: 1,000,000,000">
+                <div class="form-hint" id="goal-hint">목표 매출을 입력하면 예상 월 수익을 보여드려요</div>
+              </div>
+              <div class="form-field full">
+                <label>가맹점 유치 계획 / 메모</label>
+                <textarea name="메모" rows="3" placeholder="현재 영업망, 예상 가맹점 수, 궁금한 점 등 자유롭게 작성해 주세요"></textarea>
+              </div>
+            </div>
+
+            <div class="form-step">
+              <div class="booking-step" style="margin-top:32px;">
+                <div class="step-num">03</div>
+                <div class="step-title">서류 첨부 <span class="optional">(선택)</span></div>
+              </div>
+              <p class="upload-desc">신분증 사본, 통장 사본을 첨부하시면 미팅 시 절차가 더 빠릅니다. (이미지 또는 PDF)</p>
+
+              <div class="upload-grid">
+                <label class="upload-box" for="file-id">
+                  <input type="file" name="신분증사본" id="file-id" accept="image/*,.pdf">
+                  <div class="upload-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M15 8h3M15 12h3M3 18s3-3 6-3 4 3 4 3"/></svg>
+                  </div>
+                  <div class="upload-title">신분증 사본</div>
+                  <div class="upload-hint" data-default="클릭하여 파일 선택">클릭하여 파일 선택</div>
+                </label>
+
+                <label class="upload-box" for="file-bank">
+                  <input type="file" name="통장사본" id="file-bank" accept="image/*,.pdf">
+                  <div class="upload-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="14" rx="2"/><path d="M2 10h20M6 15h4"/></svg>
+                  </div>
+                  <div class="upload-title">통장 사본</div>
+                  <div class="upload-hint" data-default="클릭하여 파일 선택">클릭하여 파일 선택</div>
+                </label>
+
+                <label class="upload-box" for="file-biz">
+                  <input type="file" name="사업자등록증" id="file-biz" accept="image/*,.pdf">
+                  <div class="upload-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="15" y2="17"/></svg>
+                  </div>
+                  <div class="upload-title">사업자등록증</div>
+                  <div class="upload-hint" data-default="클릭하여 파일 선택">클릭하여 파일 선택</div>
+                </label>
+              </div>
+            </div>
+
+            <div class="consent">
+              <label class="consent-label">
+                <input type="checkbox" name="개인정보동의" required>
+                <span>제출한 개인정보는 미팅 진행 및 총판 계약 검토 목적으로만 사용되며, 목적 달성 후 즉시 파기됩니다. <span class="required">(필수)</span></span>
+              </label>
+            </div>
+
+            <button type="submit" class="submit-btn" id="submit-btn">
+              미팅 예약 신청하기
+            </button>
+            <div class="form-status" id="form-status"></div>
+          </form>
+        </div>
       </div>
     </div>
   </section>
@@ -1107,7 +1661,6 @@ if (kakaoBtn) {
     try {
       await navigator.clipboard.writeText(id);
     } catch (e) {
-      // fallback
       const ta = document.createElement('textarea');
       ta.value = id;
       document.body.appendChild(ta);
@@ -1123,6 +1676,239 @@ if (kakaoBtn) {
     }, 2400);
   });
 }
+
+// =========================
+// 미팅 예약 - 달력 & 시간 선택
+// =========================
+const calMonth = document.getElementById('cal-month');
+const calGrid = document.getElementById('cal-grid');
+const calPrev = document.getElementById('cal-prev');
+const calNext = document.getElementById('cal-next');
+const timeSlotsEl = document.getElementById('time-slots');
+const selectedSummary = document.getElementById('selected-summary');
+const selValueEl = document.getElementById('sel-value');
+const hiddenDatetime = document.getElementById('hidden-datetime');
+
+const today = new Date();
+today.setHours(0,0,0,0);
+let viewDate = new Date(today.getFullYear(), today.getMonth(), 1);
+let selectedDate = null;
+let selectedTime = null;
+
+// 평일 시간 슬롯 (10:00 ~ 18:00, 1시간 간격)
+const TIME_SLOTS = ['10:00','11:00','13:00','14:00','15:00','16:00','17:00'];
+// 데모용 - 이미 예약된 시간(차후 서버에서 가져올 수 있음)
+const BUSY = {}; // 예: { '2026-05-12': ['11:00', '14:00'] }
+
+function ymd(d) {
+  const y = d.getFullYear();
+  const m = String(d.getMonth()+1).padStart(2,'0');
+  const day = String(d.getDate()).padStart(2,'0');
+  return `${y}-${m}-${day}`;
+}
+
+function renderCalendar() {
+  const year = viewDate.getFullYear();
+  const month = viewDate.getMonth();
+  calMonth.textContent = `${year}년 ${month+1}월`;
+
+  const firstDay = new Date(year, month, 1).getDay();
+  const lastDate = new Date(year, month+1, 0).getDate();
+
+  // 이전 달로 못가는 조건
+  const minMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+  calPrev.disabled = viewDate.getTime() <= minMonth.getTime();
+  // 3개월까지만 예약
+  const maxMonth = new Date(today.getFullYear(), today.getMonth()+3, 1);
+  calNext.disabled = viewDate.getTime() >= maxMonth.getTime();
+
+  calGrid.innerHTML = '';
+
+  // 빈 칸 (해당월 1일 요일 위치까지)
+  for (let i = 0; i < firstDay; i++) {
+    const empty = document.createElement('div');
+    empty.className = 'cal-day empty';
+    calGrid.appendChild(empty);
+  }
+
+  // 날짜
+  for (let d = 1; d <= lastDate; d++) {
+    const date = new Date(year, month, d);
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'cal-day';
+    btn.textContent = d;
+
+    const dow = date.getDay();
+    if (dow === 0) btn.classList.add('weekend-sun');
+    if (dow === 6) btn.classList.add('weekend-sat');
+
+    if (date.getTime() === today.getTime()) btn.classList.add('today');
+
+    // 과거 날짜 비활성
+    if (date.getTime() < today.getTime()) btn.disabled = true;
+    // 일요일 비활성 (휴무)
+    if (dow === 0) btn.disabled = true;
+    // 3개월 이후 비활성
+    const limit = new Date(today.getFullYear(), today.getMonth()+3, today.getDate());
+    if (date.getTime() > limit.getTime()) btn.disabled = true;
+
+    if (selectedDate && ymd(date) === ymd(selectedDate)) btn.classList.add('selected');
+
+    btn.addEventListener('click', () => {
+      selectedDate = date;
+      selectedTime = null;
+      renderCalendar();
+      renderTimeSlots();
+      updateSummary();
+    });
+
+    calGrid.appendChild(btn);
+  }
+}
+
+function renderTimeSlots() {
+  if (!selectedDate) {
+    timeSlotsEl.innerHTML = '<div class="time-empty">먼저 날짜를 선택해 주세요</div>';
+    return;
+  }
+  const key = ymd(selectedDate);
+  const busyList = BUSY[key] || [];
+
+  timeSlotsEl.innerHTML = '';
+  TIME_SLOTS.forEach(t => {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'time-slot';
+    btn.textContent = t;
+    if (busyList.includes(t)) btn.disabled = true;
+    if (selectedTime === t) btn.classList.add('selected');
+    btn.addEventListener('click', () => {
+      selectedTime = t;
+      renderTimeSlots();
+      updateSummary();
+    });
+    timeSlotsEl.appendChild(btn);
+  });
+}
+
+function updateSummary() {
+  if (selectedDate && selectedTime) {
+    const m = selectedDate.getMonth()+1;
+    const d = selectedDate.getDate();
+    const dow = ['일','월','화','수','목','금','토'][selectedDate.getDay()];
+    const txt = `${selectedDate.getFullYear()}년 ${m}월 ${d}일 (${dow}) ${selectedTime}`;
+    selValueEl.textContent = txt;
+    selectedSummary.style.display = 'flex';
+    hiddenDatetime.value = txt;
+  } else {
+    selectedSummary.style.display = 'none';
+    hiddenDatetime.value = '';
+  }
+}
+
+calPrev.addEventListener('click', () => {
+  viewDate = new Date(viewDate.getFullYear(), viewDate.getMonth()-1, 1);
+  renderCalendar();
+});
+calNext.addEventListener('click', () => {
+  viewDate = new Date(viewDate.getFullYear(), viewDate.getMonth()+1, 1);
+  renderCalendar();
+});
+
+renderCalendar();
+
+// 목표 매출 콤마 자동 + 예상 수익 표시
+const goalRev = document.getElementById('goal-rev');
+const goalHint = document.getElementById('goal-hint');
+goalRev.addEventListener('input', (e) => {
+  const cursorPos = e.target.selectionStart;
+  const oldLength = e.target.value.length;
+  const raw = e.target.value.replace(/[^0-9]/g, '');
+  const formatted = raw ? parseInt(raw, 10).toLocaleString('ko-KR') : '';
+  e.target.value = formatted;
+  const newLength = formatted.length;
+  const newPos = Math.max(0, cursorPos + (newLength - oldLength));
+  e.target.setSelectionRange(newPos, newPos);
+
+  const num = parseInt(raw, 10) || 0;
+  if (num > 0) {
+    const monthly = num * 0.005; // D1 0.5% 기준
+    goalHint.classList.add('active');
+    goalHint.textContent = `예상 월 수익: ${Math.round(monthly).toLocaleString('ko-KR')}원 (D1 0.5% 기준)`;
+  } else {
+    goalHint.classList.remove('active');
+    goalHint.textContent = '목표 매출을 입력하면 예상 월 수익을 보여드려요';
+  }
+});
+
+// 파일 업로드 표시
+document.querySelectorAll('.upload-box input[type="file"]').forEach(input => {
+  input.addEventListener('change', (e) => {
+    const box = e.target.closest('.upload-box');
+    const hint = box.querySelector('.upload-hint');
+    if (e.target.files && e.target.files[0]) {
+      box.classList.add('has-file');
+      hint.textContent = '✓ ' + e.target.files[0].name;
+    } else {
+      box.classList.remove('has-file');
+      hint.textContent = hint.dataset.default;
+    }
+  });
+});
+
+// 폼 제출 (Formspree)
+const form = document.getElementById('booking-form');
+const submitBtn = document.getElementById('submit-btn');
+const formStatus = document.getElementById('form-status');
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  if (!selectedDate || !selectedTime) {
+    formStatus.className = 'form-status error';
+    formStatus.textContent = '먼저 날짜와 시간을 선택해 주세요.';
+    document.getElementById('s7').scrollIntoView({behavior:'smooth'});
+    return;
+  }
+
+  submitBtn.disabled = true;
+  submitBtn.textContent = '신청 접수 중...';
+  formStatus.className = 'form-status';
+  formStatus.style.display = 'none';
+
+  try {
+    const formData = new FormData(form);
+    const res = await fetch(form.action, {
+      method: 'POST',
+      body: formData,
+      headers: { 'Accept': 'application/json' }
+    });
+    if (res.ok) {
+      formStatus.className = 'form-status success';
+      formStatus.innerHTML = '✓ 예약 신청이 정상 접수되었습니다.<br>담당자가 확인 후 빠르게 연락드리겠습니다.';
+      form.reset();
+      selectedDate = null;
+      selectedTime = null;
+      renderCalendar();
+      renderTimeSlots();
+      updateSummary();
+      document.querySelectorAll('.upload-box').forEach(b => {
+        b.classList.remove('has-file');
+        const hint = b.querySelector('.upload-hint');
+        hint.textContent = hint.dataset.default;
+      });
+    } else {
+      throw new Error('전송 실패');
+    }
+  } catch (err) {
+    formStatus.className = 'form-status error';
+    formStatus.textContent = '제출 중 오류가 발생했습니다. 잠시 후 다시 시도하시거나 카카오톡으로 문의해 주세요.';
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.textContent = '미팅 예약 신청하기';
+  }
+});
 </script>
 </body>
 </html>
