@@ -9,7 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
- 
+
 :root {
   --bg: #fbfbfd;
   --card: #ffffff;
@@ -24,7 +24,7 @@
   --shadow: 0 4px 24px rgba(0,0,0,0.06);
   --shadow-lg: 0 20px 60px rgba(0,0,0,0.1);
 }
- 
+
 html, body {
   font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
   background: var(--bg);
@@ -34,7 +34,7 @@ html, body {
   overflow-x: hidden;
   scroll-behavior: smooth;
 }
- 
+
 /* Top nav */
 .nav {
   position: fixed;
@@ -54,13 +54,13 @@ html, body {
 }
 .nav-brand { letter-spacing: -0.01em; }
 .nav-progress { color: var(--text-tertiary); font-variant-numeric: tabular-nums; }
- 
+
 /* Slides container */
 .slides {
   padding-top: 48px;
   padding-bottom: 120px;
 }
- 
+
 .slide {
   min-height: calc(100vh - 48px);
   padding: 80px 24px;
@@ -69,13 +69,13 @@ html, body {
   justify-content: center;
   scroll-snap-align: start;
 }
- 
+
 .slide-inner {
   width: 100%;
   max-width: 980px;
   margin: 0 auto;
 }
- 
+
 /* Hero / cover */
 .hero {
   text-align: center;
@@ -122,7 +122,7 @@ html, body {
   font-weight: 500;
   color: var(--text-secondary);
 }
- 
+
 /* Section title */
 .section-eyebrow {
   font-size: 14px;
@@ -147,7 +147,7 @@ html, body {
   margin-bottom: 56px;
   max-width: 720px;
 }
- 
+
 /* Flow steps */
 .flow {
   display: grid;
@@ -181,7 +181,7 @@ html, body {
   color: var(--text-secondary);
   line-height: 1.5;
 }
- 
+
 /* Fee cards */
 .fee-grid {
   display: grid;
@@ -265,7 +265,7 @@ html, body {
   line-height: 1.5;
 }
 .fee-card.featured .fee-note { border-top-color: rgba(255,255,255,0.1); }
- 
+
 /* Simulator */
 .sim-wrap {
   background: var(--card);
@@ -356,7 +356,7 @@ html, body {
   border-color: var(--accent);
   color: var(--accent);
 }
- 
+
 /* Examples table */
 .examples {
   background: var(--card);
@@ -400,7 +400,7 @@ html, body {
 .tag-recalc { background: #fff4e6; color: #c25e00; }
 .tag-d0 { background: #e8faef; color: #0e8a3a; }
 .num { font-variant-numeric: tabular-nums; text-align: right; }
- 
+
 /* Final CTA */
 .cta-card {
   background: linear-gradient(135deg, #1d1d1f 0%, #2c2c2e 100%);
@@ -444,7 +444,7 @@ html, body {
   font-size: 13px;
   color: rgba(255,255,255,0.6);
 }
- 
+
 /* Notes */
 .notes {
   margin-top: 48px;
@@ -455,7 +455,7 @@ html, body {
   line-height: 1.7;
 }
 .notes p { margin-bottom: 6px; }
- 
+
 /* Footer */
 .footer {
   text-align: center;
@@ -464,7 +464,7 @@ html, body {
   font-size: 12px;
   border-top: 1px solid var(--border-light);
 }
- 
+
 /* Reveal animation */
 .reveal {
   opacity: 0;
@@ -480,7 +480,7 @@ html, body {
 .reveal.delay-3 { transition-delay: 0.3s; }
 .reveal.delay-4 { transition-delay: 0.4s; }
 .reveal.delay-5 { transition-delay: 0.5s; }
- 
+
 /* Responsive */
 @media (max-width: 720px) {
   .slide { padding: 60px 20px; }
@@ -500,14 +500,14 @@ html, body {
 </style>
 </head>
 <body>
- 
+
 <nav class="nav">
   <div class="nav-brand">블랙리츠 PG</div>
   <div class="nav-progress" id="progress">01 / 06</div>
 </nav>
- 
+
 <div class="slides">
- 
+
   <!-- 01 Hero -->
   <section class="slide" id="s1">
     <div class="slide-inner hero">
@@ -521,7 +521,7 @@ html, body {
       </div>
     </div>
   </section>
- 
+
   <!-- 02 Flow -->
   <section class="slide" id="s2">
     <div class="slide-inner">
@@ -557,31 +557,31 @@ html, body {
       </div>
     </div>
   </section>
- 
+
   <!-- 03 Fee proposal -->
   <section class="slide" id="s3">
     <div class="slide-inner">
       <div class="section-eyebrow reveal">3가지 정산 방식</div>
       <h2 class="section-title reveal delay-1">정산 주기에 따라<br>수수료가 달라집니다.</h2>
-      <p class="section-sub reveal delay-2">가맹점 부담 수수료 중 일부를 총판이 공유합니다. 신규 등록 기준은 D1(익일정산) 0.55%입니다.</p>
- 
+      <p class="section-sub reveal delay-2">가맹점 부담 수수료 중 일부를 총판이 공유합니다. 신규 등록 기준은 D1(익일정산) 0.5%입니다.</p>
+
       <div class="fee-grid">
         <!-- D1 -->
         <div class="fee-card featured reveal delay-1">
           <span class="fee-tag">권장 · 신규 기본</span>
           <div class="fee-type">D1</div>
           <div class="fee-cycle">익일 정산 · D+1</div>
-          <div class="fee-rate">0.55<span style="font-size:32px;">%</span></div>
+          <div class="fee-rate">0.5<span style="font-size:32px;">%</span></div>
           <div class="fee-rate-label">총판 수수료 (제안)</div>
           <div class="fee-rows">
             <div class="fee-row"><span class="fee-label">점주 카드수수료</span><span class="fee-value">4.4%</span></div>
-            <div class="fee-row"><span class="fee-label">월 1천만원 매출</span><span class="fee-value">55,000원</span></div>
-            <div class="fee-row"><span class="fee-label">월 5천만원 매출</span><span class="fee-value">275,000원</span></div>
-            <div class="fee-row"><span class="fee-label">월 1억 매출</span><span class="fee-value">550,000원</span></div>
+            <div class="fee-row"><span class="fee-label">월 1천만원 매출</span><span class="fee-value">50,000원</span></div>
+            <div class="fee-row"><span class="fee-label">월 5천만원 매출</span><span class="fee-value">250,000원</span></div>
+            <div class="fee-row"><span class="fee-label">월 1억 매출</span><span class="fee-value">500,000원</span></div>
           </div>
           <div class="fee-note">3.95% 이상 받으면 됩니다.</div>
         </div>
- 
+
         <!-- 재정산 -->
         <div class="fee-card reveal delay-2">
           <span class="fee-tag">고마진</span>
@@ -597,7 +597,7 @@ html, body {
           </div>
           <div class="fee-note">6% 이상 받으면 됩니다. 마진율 3%대로 업주 입장에서 세금 혜택이 가장 큽니다.</div>
         </div>
- 
+
         <!-- D0 -->
         <div class="fee-card reveal delay-3">
           <span class="fee-tag">즉시 정산</span>
@@ -614,60 +614,60 @@ html, body {
           <div class="fee-note">7% 이상 받으면 됩니다. 즉시정산 총판은 마진이 가장 큽니다.</div>
         </div>
       </div>
- 
+
       <div class="notes reveal">
         <p>※ 본 제안표는 신규 총판 협상용 권장값입니다. 최종 수수료율은 본사 협의 후 확정됩니다.</p>
         <p>※ 위 수수료는 부가세 별도 (공급가액 기준 지급).</p>
       </div>
     </div>
   </section>
- 
+
   <!-- 04 Simulator -->
   <section class="slide" id="s4">
     <div class="slide-inner">
       <div class="section-eyebrow reveal">수익 시뮬레이터</div>
       <h2 class="section-title reveal delay-1">매출과 수수료율을<br>입력해 보세요.</h2>
       <p class="section-sub reveal delay-2">가맹점 한 곳의 월 매출과 수수료율을 넣으면 월/연간 예상 수익이 즉시 계산됩니다.</p>
- 
+
       <div class="sim-wrap reveal delay-1">
         <div class="sim-controls">
           <div class="sim-field">
             <label for="sim-rev">월 매출 (원)</label>
-            <input type="number" id="sim-rev" value="50000000" step="1000000">
+            <input type="text" inputmode="numeric" id="sim-rev" value="50,000,000">
           </div>
           <div class="sim-field">
             <label for="sim-rate">총판 수수료율 (%)</label>
-            <input type="number" id="sim-rate" value="0.55" step="0.01">
+            <input type="number" id="sim-rate" value="0.5" step="0.01">
           </div>
         </div>
         <div class="sim-result">
           <div class="sim-result-label">월 예상 수익</div>
-          <div class="sim-result-value" id="sim-monthly">275,000원</div>
-          <div class="sim-result-annual">연 환산 <span id="sim-annual">3,300,000</span>원 (월수익 × 12)</div>
+          <div class="sim-result-value" id="sim-monthly">250,000원</div>
+          <div class="sim-result-annual">연 환산 <span id="sim-annual">3,000,000</span>원 (월수익 × 12)</div>
           <div class="sim-presets">
-            <button class="preset-btn" data-rev="10000000" data-rate="0.55">월 1천만 · 0.55%</button>
-            <button class="preset-btn" data-rev="50000000" data-rate="0.55">월 5천만 · 0.55%</button>
-            <button class="preset-btn" data-rev="100000000" data-rate="0.55">월 1억 · 0.55%</button>
+            <button class="preset-btn" data-rev="10000000" data-rate="0.5">월 1천만 · 0.5%</button>
+            <button class="preset-btn" data-rev="50000000" data-rate="0.5">월 5천만 · 0.5%</button>
+            <button class="preset-btn" data-rev="100000000" data-rate="0.5">월 1억 · 0.5%</button>
             <button class="preset-btn" data-rev="50000000" data-rate="3">월 5천만 · 재정산 3%</button>
             <button class="preset-btn" data-rev="50000000" data-rate="4">월 5천만 · D0 4%</button>
           </div>
         </div>
       </div>
- 
+
       <div class="notes reveal delay-2">
         <p>※ 위 금액은 부가세 별도 공급가액 기준입니다.</p>
         <p>※ 통신비/유심비 차감 전 금액이며 실제 입금액과 차이가 있을 수 있습니다.</p>
       </div>
     </div>
   </section>
- 
+
   <!-- 05 Examples -->
   <section class="slide" id="s5">
     <div class="slide-inner">
       <div class="section-eyebrow reveal">실제 시뮬레이션</div>
-      <h2 class="section-title reveal delay-1">10개 가맹점, 매출 10억<br>월 수익 844만원.</h2>
-      <p class="section-sub reveal delay-2">아래는 매출 합계 10억원 가맹점 구성을 가정한 시뮬레이션입니다. 연 환산 1억원이 가능한 모델입니다.</p>
- 
+      <h2 class="section-title reveal delay-1">10개 가맹점, 매출 10억<br>월 수익 800만원.</h2>
+      <p class="section-sub reveal delay-2">아래는 매출 합계 10억원 가맹점 구성을 가정한 시뮬레이션입니다. 연 환산 9,600만원이 가능한 모델입니다.</p>
+
       <div class="examples reveal delay-1">
         <div class="examples-row head">
           <div>가맹점</div>
@@ -680,22 +680,22 @@ html, body {
           <div>카페A</div>
           <div><span class="tag-d1">D1</span></div>
           <div class="num">50,000,000</div>
-          <div class="num">0.55%</div>
-          <div class="num">275,000</div>
+          <div class="num">0.50%</div>
+          <div class="num">250,000</div>
         </div>
         <div class="examples-row">
           <div>음식점B</div>
           <div><span class="tag-d1">D1</span></div>
           <div class="num">80,000,000</div>
-          <div class="num">0.55%</div>
-          <div class="num">440,000</div>
+          <div class="num">0.50%</div>
+          <div class="num">400,000</div>
         </div>
         <div class="examples-row">
           <div>온라인판매점</div>
           <div><span class="tag-d1">D1</span></div>
           <div class="num">100,000,000</div>
-          <div class="num">0.55%</div>
-          <div class="num">550,000</div>
+          <div class="num">0.50%</div>
+          <div class="num">500,000</div>
         </div>
         <div class="examples-row">
           <div>사업장E</div>
@@ -708,29 +708,29 @@ html, body {
           <div>로컬마트 상암점</div>
           <div><span class="tag-d1">D1</span></div>
           <div class="num">120,000,000</div>
-          <div class="num">0.55%</div>
-          <div class="num">660,000</div>
+          <div class="num">0.50%</div>
+          <div class="num">600,000</div>
         </div>
         <div class="examples-row">
           <div>프리미엄필라테스</div>
           <div><span class="tag-d1">D1</span></div>
           <div class="num">150,000,000</div>
-          <div class="num">0.55%</div>
-          <div class="num">825,000</div>
+          <div class="num">0.50%</div>
+          <div class="num">750,000</div>
         </div>
         <div class="examples-row">
           <div>미래치과의원</div>
           <div><span class="tag-d1">D1</span></div>
           <div class="num">200,000,000</div>
-          <div class="num">0.55%</div>
-          <div class="num">1,100,000</div>
+          <div class="num">0.50%</div>
+          <div class="num">1,000,000</div>
         </div>
         <div class="examples-row">
           <div>스마트스터디학원</div>
           <div><span class="tag-d1">D1</span></div>
           <div class="num">180,000,000</div>
-          <div class="num">0.55%</div>
-          <div class="num">990,000</div>
+          <div class="num">0.50%</div>
+          <div class="num">900,000</div>
         </div>
         <div class="examples-row">
           <div>온누리약국 강남점</div>
@@ -744,12 +744,12 @@ html, body {
           <div></div>
           <div class="num">1,000,000,000</div>
           <div></div>
-          <div class="num">8,440,000</div>
+          <div class="num">8,000,000</div>
         </div>
       </div>
     </div>
   </section>
- 
+
   <!-- 06 CTA -->
   <section class="slide" id="s6">
     <div class="slide-inner">
@@ -773,13 +773,13 @@ html, body {
       </div>
     </div>
   </section>
- 
+
 </div>
- 
+
 <footer class="footer">
   © 블랙리츠 PG · 총판 사업안내서 v1
 </footer>
- 
+
 <script>
 // Simulator
 const revInput = document.getElementById('sim-rev');
@@ -787,25 +787,41 @@ const rateInput = document.getElementById('sim-rate');
 const monthlyOut = document.getElementById('sim-monthly');
 const annualOut = document.getElementById('sim-annual');
 const fmt = n => Math.round(n).toLocaleString('ko-KR');
- 
+
 function calc() {
-  const rev = parseFloat(revInput.value) || 0;
+  const rev = parseFloat(revInput.value.replace(/,/g, '')) || 0;
   const rate = (parseFloat(rateInput.value) || 0) / 100;
   const monthly = rev * rate;
   monthlyOut.textContent = fmt(monthly) + '원';
   annualOut.textContent = fmt(monthly * 12);
 }
-revInput.addEventListener('input', calc);
+
+// 매출 input에 콤마 자동 포맷팅
+revInput.addEventListener('input', (e) => {
+  const cursorPos = e.target.selectionStart;
+  const oldLength = e.target.value.length;
+  // 숫자만 추출
+  const raw = e.target.value.replace(/[^0-9]/g, '');
+  // 콤마 추가
+  const formatted = raw ? parseInt(raw, 10).toLocaleString('ko-KR') : '';
+  e.target.value = formatted;
+  // 커서 위치 보정
+  const newLength = formatted.length;
+  const newPos = Math.max(0, cursorPos + (newLength - oldLength));
+  e.target.setSelectionRange(newPos, newPos);
+  calc();
+});
+
 rateInput.addEventListener('input', calc);
 document.querySelectorAll('.preset-btn').forEach(btn => {
   btn.addEventListener('click', () => {
-    revInput.value = btn.dataset.rev;
+    revInput.value = parseInt(btn.dataset.rev, 10).toLocaleString('ko-KR');
     rateInput.value = btn.dataset.rate;
     calc();
   });
 });
 calc();
- 
+
 // Reveal on scroll
 const io = new IntersectionObserver(entries => {
   entries.forEach(e => {
@@ -816,7 +832,7 @@ const io = new IntersectionObserver(entries => {
   });
 }, { threshold: 0.15 });
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
- 
+
 // Progress
 const slides = document.querySelectorAll('.slide');
 const progress = document.getElementById('progress');
