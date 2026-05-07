@@ -1857,10 +1857,69 @@ document.querySelectorAll('.upload-box input[type="file"]').forEach(input => {
   });
 });
 
-// 폼 제출 (Formspree)
+// 폼 제출 (Formspree + 텔레그램)
 const form = document.getElementById('booking-form');
 const submitBtn = document.getElementById('submit-btn');
 const formStatus = document.getElementById('form-status');
+
+// =====================================================
+// 텔레그램 알림 설정 (본인이 이 두 줄을 본인 값으로 채우세요)
+// =====================================================
+const TELEGRAM_BOT_TOKEN = '8591430439:AAF3Ilb4Cn5e_PKMk-SPnLdqd5Dd9V2D1rw';
+const TELEGRAM_CHAT_ID   = '5019367573';
+// =====================================================
+
+async function sendTelegramAlert(formData) {
+  if (!TELEGRAM_BOT_TOKEN || TELEGRAM_BOT_TOKEN === '8591430439:AAF3Ilb4Cn5e_PKMk-SPnLdqd5Dd9V2D1rw') return;
+
+  const get = k => (formData.get(k) || '').toString().trim();
+  const fileInfo = (k) => {
+    const f = formData.get(k);
+    return (f && f.name && f.size > 0) ? `✓ ${f.name}` : '없음';
+  };
+
+  const lines = [
+    '🔔 *새 예약 신청*',
+    '━━━━━━━━━━━━━━',
+    `📅 *예약일시*: ${get('예약일시') || '-'}`,
+    '',
+    `👤 *이름*: ${get('이름') || '-'}`,
+    `📞 *전화*: ${get('전화번호') || '-'}`,
+    `✉️ *이메일*: ${get('이메일') || '-'}`,
+    '',
+    `🏢 *상호*: ${get('상호') || '-'}`,
+    `🆔 *사업자번호*: ${get('사업자등록번호') || '-'}`,
+    '',
+    `💼 *희망 정산*: ${get('희망정산방식') || '-'}`,
+    `💰 *월 목표 매출*: ${get('월목표매출') ? get('월목표매출') + '원' : '-'}`,
+    '',
+    `📝 *메모*:`,
+    get('메모') || '_(없음)_',
+    '',
+    '📎 *첨부 서류*',
+    `• 신분증: ${fileInfo('신분증사본')}`,
+    `• 통장: ${fileInfo('통장사본')}`,
+    `• 사업자등록증: ${fileInfo('사업자등록증')}`,
+    '',
+    '_상세 정보 및 첨부파일은 이메일을 확인하세요._'
+  ];
+  const text = lines.join('\n');
+
+  try {
+    await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        chat_id: TELEGRAM_CHAT_ID,
+        text: text,
+        parse_mode: 'Markdown'
+      })
+    });
+  } catch (err) {
+    // 텔레그램 알림 실패해도 사용자 폼 제출은 성공 처리
+    console.warn('텔레그램 알림 발송 실패:', err);
+  }
+}
 
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
@@ -1879,12 +1938,18 @@ form.addEventListener('submit', async (e) => {
 
   try {
     const formData = new FormData(form);
+
+    // 1) Formspree로 이메일 전송 (첨부파일 포함)
     const res = await fetch(form.action, {
       method: 'POST',
       body: formData,
       headers: { 'Accept': 'application/json' }
     });
+
     if (res.ok) {
+      // 2) 텔레그램 즉시 알림 (이메일 도착보다 빠름)
+      sendTelegramAlert(formData);
+
       formStatus.className = 'form-status success';
       formStatus.innerHTML = '✓ 예약 신청이 정상 접수되었습니다.<br>담당자가 확인 후 빠르게 연락드리겠습니다.';
       form.reset();
