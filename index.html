@@ -1863,14 +1863,13 @@ const submitBtn = document.getElementById('submit-btn');
 const formStatus = document.getElementById('form-status');
 
 // =====================================================
-// 텔레그램 알림 설정 (본인이 이 두 줄을 본인 값으로 채우세요)
+// 텔레그램 알림 - Cloudflare Worker URL
 // =====================================================
-const TELEGRAM_BOT_TOKEN = '8591430439:AAGe8zvB3kUxOhBF_keD_GDYi4xNGhzgQNI';
-const TELEGRAM_CHAT_ID   = '5019367573';
+const TELEGRAM_WORKER_URL = 'https://polished-limit-6b88.x77xdavid.workers.dev';
 // =====================================================
 
 async function sendTelegramAlert(formData) {
-  if (!TELEGRAM_BOT_TOKEN || TELEGRAM_BOT_TOKEN === '8591430439:AAGe8zvB3kUxOhBF_keD_GDYi4xNGhzgQNI') return;
+  if (!TELEGRAM_WORKER_URL || TELEGRAM_WORKER_URL === 'PUT_YOUR_WORKER_URL_HERE') return;
 
   const get = k => (formData.get(k) || '').toString().trim();
   const fileInfo = (k) => {
@@ -1906,14 +1905,10 @@ async function sendTelegramAlert(formData) {
   const text = lines.join('\n');
 
   try {
-    await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+    await fetch(TELEGRAM_WORKER_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        chat_id: TELEGRAM_CHAT_ID,
-        text: text,
-        parse_mode: 'Markdown'
-      })
+      body: JSON.stringify({ text: text })
     });
   } catch (err) {
     // 텔레그램 알림 실패해도 사용자 폼 제출은 성공 처리
