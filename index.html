@@ -1697,8 +1697,10 @@ let selectedTime = null;
 
 // 평일 시간 슬롯 (10:00 ~ 18:00, 1시간 간격)
 const TIME_SLOTS = ['10:00','11:00','13:00','14:00','15:00','16:00','17:00'];
-// 데모용 - 이미 예약된 시간(차후 서버에서 가져올 수 있음)
-const BUSY = {}; // 예: { '2026-05-12': ['11:00', '14:00'] }
+// Worker API URL
+const WORKER_URL = 'https://polished-limit-6b88.x77xdavid.workers.dev';
+// 예약된 시간 캐시 (API에서 가져옴)
+const BUSY = {};
 
 function ymd(d) {
   const y = d.getFullYear();
@@ -1767,13 +1769,29 @@ function renderCalendar() {
   }
 }
 
-function renderTimeSlots() {
+async function fetchBusyTimes(dateStr) {
+  if (BUSY[dateStr] !== undefined) return BUSY[dateStr];
+  try {
+    const res = await fetch(`${WORKER_URL}/events?date=${dateStr}`);
+    const data = await res.json();
+    BUSY[dateStr] = data.busy || [];
+  } catch (e) {
+    console.warn('busy times fetch failed:', e);
+    BUSY[dateStr] = [];
+  }
+  return BUSY[dateStr];
+}
+
+async function renderTimeSlots() {
   if (!selectedDate) {
     timeSlotsEl.innerHTML = '<div class="time-empty">먼저 날짜를 선택해 주세요</div>';
     return;
   }
+
   const key = ymd(selectedDate);
-  const busyList = BUSY[key] || [];
+  timeSlotsEl.innerHTML = '<div class="time-empty">시간 조회 중...</div>';
+
+  const busyList = await fetchBusyTimes(key);
 
   timeSlotsEl.innerHTML = '';
   TIME_SLOTS.forEach(t => {
@@ -1857,64 +1875,10 @@ document.querySelectorAll('.upload-box input[type="file"]').forEach(input => {
   });
 });
 
-// 폼 제출 (Formspree + 텔레그램)
+// 폼 제출 (Worker /book API + Formspree 병행)
 const form = document.getElementById('booking-form');
 const submitBtn = document.getElementById('submit-btn');
 const formStatus = document.getElementById('form-status');
-
-// =====================================================
-// 텔레그램 알림 - Cloudflare Worker URL
-// =====================================================
-const TELEGRAM_WORKER_URL = 'https://polished-limit-6b88.x77xdavid.workers.dev';
-// =====================================================
-
-async function sendTelegramAlert(formData) {
-  if (!TELEGRAM_WORKER_URL || TELEGRAM_WORKER_URL === 'PUT_YOUR_WORKER_URL_HERE') return;
-
-  const get = k => (formData.get(k) || '').toString().trim();
-  const fileInfo = (k) => {
-    const f = formData.get(k);
-    return (f && f.name && f.size > 0) ? `✓ ${f.name}` : '없음';
-  };
-
-  const lines = [
-    '🔔 *새 예약 신청*',
-    '━━━━━━━━━━━━━━',
-    `📅 *예약일시*: ${get('예약일시') || '-'}`,
-    '',
-    `👤 *이름*: ${get('이름') || '-'}`,
-    `📞 *전화*: ${get('전화번호') || '-'}`,
-    `✉️ *이메일*: ${get('이메일') || '-'}`,
-    '',
-    `🏢 *상호*: ${get('상호') || '-'}`,
-    `🆔 *사업자번호*: ${get('사업자등록번호') || '-'}`,
-    '',
-    `💼 *희망 정산*: ${get('희망정산방식') || '-'}`,
-    `💰 *월 목표 매출*: ${get('월목표매출') ? get('월목표매출') + '원' : '-'}`,
-    '',
-    `📝 *메모*:`,
-    get('메모') || '_(없음)_',
-    '',
-    '📎 *첨부 서류*',
-    `• 신분증: ${fileInfo('신분증사본')}`,
-    `• 통장: ${fileInfo('통장사본')}`,
-    `• 사업자등록증: ${fileInfo('사업자등록증')}`,
-    '',
-    '_상세 정보 및 첨부파일은 이메일을 확인하세요._'
-  ];
-  const text = lines.join('\n');
-
-  try {
-    await fetch(TELEGRAM_WORKER_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ text: text })
-    });
-  } catch (err) {
-    // 텔레그램 알림 실패해도 사용자 폼 제출은 성공 처리
-    console.warn('텔레그램 알림 발송 실패:', err);
-  }
-}
 
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
@@ -1931,39 +1895,82 @@ form.addEventListener('submit', async (e) => {
   formStatus.className = 'form-status';
   formStatus.style.display = 'none';
 
-  try {
-    const formData = new FormData(form);
+  const formData = new FormData(form);
+  const get = k => (formData.get(k) || '').toString().trim();
+  const fileInfo = (k) => {
+    const f = formData.get(k);
+    return (f && f.name && f.size > 0) ? `✓ ${f.name}` : null;
+  };
 
-    // 1) Formspree로 이메일 전송 (첨부파일 포함)
-    const res = await fetch(form.action, {
-      method: 'POST',
-      body: formData,
-      headers: { 'Accept': 'application/json' }
-    });
-
-    if (res.ok) {
-      // 2) 텔레그램 즉시 알림 (이메일 도착보다 빠름)
-      sendTelegramAlert(formData);
-
-      formStatus.className = 'form-status success';
-      formStatus.innerHTML = '✓ 예약 신청이 정상 접수되었습니다.<br>담당자가 확인 후 빠르게 연락드리겠습니다.';
-      form.reset();
-      selectedDate = null;
-      selectedTime = null;
-      renderCalendar();
-      renderTimeSlots();
-      updateSummary();
-      document.querySelectorAll('.upload-box').forEach(b => {
-        b.classList.remove('has-file');
-        const hint = b.querySelector('.upload-hint');
-        hint.textContent = hint.dataset.default;
-      });
-    } else {
-      throw new Error('전송 실패');
+  const bookingData = {
+    date: ymd(selectedDate),
+    time: selectedTime,
+    name: get('이름'),
+    phone: get('전화번호'),
+    email: get('이메일'),
+    business: get('상호'),
+    bizNum: get('사업자등록번호'),
+    settlementType: get('희망정산방식'),
+    goalRevenue: get('월목표매출'),
+    memo: get('메모'),
+    files: {
+      id: fileInfo('신분증사본'),
+      bank: fileInfo('통장사본'),
+      biz: fileInfo('사업자등록증')
     }
+  };
+
+  try {
+    // 1) Worker /book API 호출 (중복체크 + KV저장 + 캘린더 + 텔레그램)
+    const bookRes = await fetch(`${WORKER_URL}/book`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(bookingData)
+    });
+    const bookResult = await bookRes.json();
+
+    if (!bookRes.ok) {
+      // 중복 예약 등 에러 처리
+      if (bookRes.status === 409) {
+        // busy 캐시 무효화 후 다시 조회
+        delete BUSY[bookingData.date];
+        renderTimeSlots();
+      }
+      throw new Error(bookResult.error || '예약 처리 실패');
+    }
+
+    // 2) Formspree로 이메일 전송 (첨부파일 포함)
+    try {
+      await fetch(form.action, {
+        method: 'POST',
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      });
+    } catch (emailErr) {
+      console.warn('이메일 전송 실패:', emailErr);
+    }
+
+    // 성공 처리
+    formStatus.className = 'form-status success';
+    formStatus.innerHTML = '✓ 예약 신청이 정상 접수되었습니다.<br>담당자가 확인 후 빠르게 연락드리겠습니다.';
+
+    // busy 캐시 무효화
+    delete BUSY[bookingData.date];
+
+    form.reset();
+    selectedDate = null;
+    selectedTime = null;
+    renderCalendar();
+    renderTimeSlots();
+    updateSummary();
+    document.querySelectorAll('.upload-box').forEach(b => {
+      b.classList.remove('has-file');
+      const hint = b.querySelector('.upload-hint');
+      hint.textContent = hint.dataset.default;
+    });
   } catch (err) {
     formStatus.className = 'form-status error';
-    formStatus.textContent = '제출 중 오류가 발생했습니다. 잠시 후 다시 시도하시거나 카카오톡으로 문의해 주세요.';
+    formStatus.textContent = err.message || '제출 중 오류가 발생했습니다. 잠시 후 다시 시도하시거나 카카오톡으로 문의해 주세요.';
   } finally {
     submitBtn.disabled = false;
     submitBtn.textContent = '미팅 예약 신청하기';
