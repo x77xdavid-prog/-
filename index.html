@@ -1138,7 +1138,7 @@ html, body {
     <div class="slide-inner">
       <div class="section-eyebrow reveal">3가지 정산 방식</div>
       <h2 class="section-title reveal delay-1">정산 주기에 따라<br>수수료가 달라집니다.</h2>
-      <p class="section-sub reveal delay-2">가맹점 부담 수수료 중 일부를 총판이 공유합니다. 신규 등록 기준은 D1(익일정산) 0.5%입니다.</p>
+      <p class="section-sub reveal delay-2">가맹점 부담 수수료 중 일부를 총판이 공유합니다. 신규 등록 기준은 D1(익일정산) 0.55%입니다.</p>
 
       <div class="fee-grid">
         <!-- D1 -->
@@ -1146,15 +1146,15 @@ html, body {
           <span class="fee-tag">권장 · 신규 기본</span>
           <div class="fee-type">D1</div>
           <div class="fee-cycle">익일 정산 · D+1</div>
-          <div class="fee-rate">0.5<span style="font-size:32px;">%</span></div>
+          <div class="fee-rate">0.55<span style="font-size:32px;">%</span></div>
           <div class="fee-rate-label">총판 수수료 (제안)</div>
           <div class="fee-rows">
             <div class="fee-row"><span class="fee-label">점주 카드수수료</span><span class="fee-value">4.4%</span></div>
-            <div class="fee-row"><span class="fee-label">월 1천만원 매출</span><span class="fee-value">50,000원</span></div>
-            <div class="fee-row"><span class="fee-label">월 5천만원 매출</span><span class="fee-value">250,000원</span></div>
-            <div class="fee-row"><span class="fee-label">월 1억 매출</span><span class="fee-value">500,000원</span></div>
+            <div class="fee-row"><span class="fee-label">월 1천만원 매출</span><span class="fee-value">55,000원</span></div>
+            <div class="fee-row"><span class="fee-label">월 5천만원 매출</span><span class="fee-value">275,000원</span></div>
+            <div class="fee-row"><span class="fee-label">월 1억 매출</span><span class="fee-value">550,000원</span></div>
           </div>
-          <div class="fee-note">3.95% 이상 받으면 됩니다.</div>
+          <div class="fee-note">3.85% 이상 받으면 됩니다.</div>
         </div>
 
         <!-- 재정산 -->
@@ -1162,15 +1162,15 @@ html, body {
           <span class="fee-tag">고마진</span>
           <div class="fee-type">재정산</div>
           <div class="fee-cycle">D+1</div>
-          <div class="fee-rate">3.0<span style="font-size:32px;">%</span></div>
-          <div class="fee-rate-label">총판 수수료 (제안)</div>
+          <div class="fee-rate">1.5<span style="font-size:32px;">%</span></div>
+          <div class="fee-rate-label">총판·대리점 각 수수료 (제안)</div>
           <div class="fee-rows">
-            <div class="fee-row"><span class="fee-label">점주 카드수수료</span><span class="fee-value">6.0%</span></div>
-            <div class="fee-row"><span class="fee-label">월 1천만원 매출</span><span class="fee-value">300,000원</span></div>
-            <div class="fee-row"><span class="fee-label">월 5천만원 매출</span><span class="fee-value">1,500,000원</span></div>
-            <div class="fee-row"><span class="fee-label">월 1억 매출</span><span class="fee-value">3,000,000원</span></div>
+            <div class="fee-row"><span class="fee-label">점주 카드수수료</span><span class="fee-value">7.0%</span></div>
+            <div class="fee-row"><span class="fee-label">월 1천만원 매출</span><span class="fee-value">150,000원</span></div>
+            <div class="fee-row"><span class="fee-label">월 5천만원 매출</span><span class="fee-value">750,000원</span></div>
+            <div class="fee-row"><span class="fee-label">월 1억 매출</span><span class="fee-value">1,500,000원</span></div>
           </div>
-          <div class="fee-note">6% 이상 받으면 됩니다. 마진율 3%대로 업주 입장에서 세금 혜택이 가장 큽니다.</div>
+          <div class="fee-note">7% 이상 받으면 됩니다. 총판·대리점 각 1.5%씩 배분됩니다.</div>
         </div>
 
         <!-- D0 -->
@@ -1186,7 +1186,7 @@ html, body {
             <div class="fee-row"><span class="fee-label">월 5천만원 매출</span><span class="fee-value">2,000,000원</span></div>
             <div class="fee-row"><span class="fee-label">월 1억 매출</span><span class="fee-value">4,000,000원</span></div>
           </div>
-          <div class="fee-note">7% 이상 받으면 됩니다. 즉시정산 총판은 마진이 가장 큽니다.</div>
+          <div class="fee-note">7% 초과분 전액 총판 귀속. 마진 극대화 정산 방식입니다.</div>
         </div>
       </div>
 
@@ -1221,10 +1221,10 @@ html, body {
           <div class="sim-result-basis" id="sim-basis">(월 매출 1억원 기준)</div>
           <div class="sim-result-annual">연 환산 <span id="sim-annual">6,000,000</span>원 (월수익 × 12)</div>
           <div class="sim-presets">
-            <button class="preset-btn" data-rev="10000000" data-rate="0.5">월 1천만 · 0.5%</button>
-            <button class="preset-btn" data-rev="50000000" data-rate="0.5">월 5천만 · 0.5%</button>
-            <button class="preset-btn" data-rev="100000000" data-rate="0.5">월 1억 · 0.5%</button>
-            <button class="preset-btn" data-rev="50000000" data-rate="3">월 5천만 · 재정산 3%</button>
+            <button class="preset-btn" data-rev="10000000" data-rate="0.55">월 1천만 · 0.55%</button>
+            <button class="preset-btn" data-rev="50000000" data-rate="0.55">월 5천만 · 0.55%</button>
+            <button class="preset-btn" data-rev="100000000" data-rate="0.55">월 1억 · 0.55%</button>
+            <button class="preset-btn" data-rev="50000000" data-rate="1.5">월 5천만 · 재정산 1.5%</button>
             <button class="preset-btn" data-rev="50000000" data-rate="4">월 5천만 · D0 4%</button>
           </div>
         </div>
@@ -1851,9 +1851,9 @@ goalRev.addEventListener('input', (e) => {
 
   const num = parseInt(raw, 10) || 0;
   if (num > 0) {
-    const monthly = num * 0.005; // D1 0.5% 기준
+    const monthly = num * 0.0055; // D1 0.55% 기준
     goalHint.classList.add('active');
-    goalHint.textContent = `예상 월 수익: ${Math.round(monthly).toLocaleString('ko-KR')}원 (D1 0.5% 기준)`;
+    goalHint.textContent = `예상 월 수익: ${Math.round(monthly).toLocaleString('ko-KR')}원 (D1 0.55% 기준)`;
   } else {
     goalHint.classList.remove('active');
     goalHint.textContent = '목표 매출을 입력하면 예상 월 수익을 보여드려요';
